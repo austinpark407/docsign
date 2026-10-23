@@ -45,7 +45,7 @@ You run it on your own server and your own database, so your documents stay with
 
 ### Option 1: Deploy to Vercel (free tier works)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSunrlseFL%2Fdocsign&env=DATABASE_URL,ADMIN_PASSWORD,SESSION_SECRET,ORG_NAME&envDescription=DATABASE_URL%20is%20any%20PostgreSQL%20connection%20string.%20SESSION_SECRET%20is%20a%20random%2032%2B%20character%20string.&envLink=https%3A%2F%2Fgithub.com%2FSunrlseFL%2Fdocsign%23configuration&project-name=docsign&repository-name=docsign)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Faustinpark407%2Fdocsign&env=DATABASE_URL,ADMIN_PASSWORD,SESSION_SECRET,ORG_NAME&envDescription=DATABASE_URL%20is%20any%20PostgreSQL%20connection%20string.%20SESSION_SECRET%20is%20a%20random%2032%2B%20character%20string.&envLink=https%3A%2F%2Fgithub.com%2Faustinpark407%2Fdocsign%23configuration&project-name=docsign&repository-name=docsign)
 
 1. Create a free PostgreSQL database, for example on [Neon](https://neon.tech) (or add Neon from the Vercel dashboard under **Storage**), and copy its connection string.
 2. Click the button above and fill in the four variables. For `SESSION_SECRET`, run `openssl rand -hex 32` or use any password generator (32+ characters).
@@ -56,7 +56,7 @@ Add email later by setting `RESEND_API_KEY` (or the `SMTP_*` variables) and `EMA
 ### Option 2: Docker (any server or your own computer)
 
 ```bash
-git clone https://github.com/SunrlseFL/docsign.git
+git clone https://github.com/austinpark407/docsign.git
 cd docsign
 cp .env.example .env      # set ADMIN_PASSWORD, SESSION_SECRET and APP_URL
 docker compose up -d
@@ -69,7 +69,7 @@ Open http://localhost:3000. The compose file runs PostgreSQL alongside the app a
 Requires Node.js 20+ and a PostgreSQL database.
 
 ```bash
-git clone https://github.com/SunrlseFL/docsign.git
+git clone https://github.com/austinpark407/docsign.git
 cd docsign
 npm install
 cp .env.example .env.local   # fill in DATABASE_URL, ADMIN_PASSWORD, SESSION_SECRET
