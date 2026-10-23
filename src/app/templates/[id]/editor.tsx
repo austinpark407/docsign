@@ -246,7 +246,7 @@ export default function TemplateEditor({ id }: { id: string }) {
               title={`${f.label} (${f.role})`}
             >
               <span className="px-1 truncate font-medium" style={{ color: c.text, fontSize: Math.max(9, Math.min(12, r.height * 0.55)) }}>
-                {f.type === 'checkbox' ? '☐' : f.defaultValue || f.label}
+                {f.type === 'checkbox' ? '' : f.defaultValue || f.label}
               </span>
               {isSel && (
                 <div

@@ -10,7 +10,7 @@ export default async function TemplatePage({ params }: { params: Promise<{ id: s
   const { id } = await params;
   return (
     <>
-      <AppHeader appName={config.appName} />
+      <AppHeader appName={config.appName} wide />
       <TemplateEditor id={id} />
     </>
   );

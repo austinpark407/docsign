@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
-export default function AppHeader({ appName }: { appName: string }) {
+/** `wide` spans the full window, matching the full-bleed editor and document screens. */
+export default function AppHeader({ appName, wide = false }: { appName: string; wide?: boolean }) {
   const pathname = usePathname();
   const router = useRouter();
   const nav = [
@@ -17,7 +18,7 @@ export default function AppHeader({ appName }: { appName: string }) {
   }
   return (
     <header className="bg-white border-b border-[var(--line)]">
-      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center gap-6">
+      <div className={`${wide ? 'px-4' : 'max-w-6xl mx-auto px-4'} h-14 flex items-center gap-6`}>
         <Link href="/" className="font-bold text-[17px] tracking-tight">{appName}</Link>
         <nav className="flex gap-1">
           {nav.map(n => (

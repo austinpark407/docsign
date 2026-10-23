@@ -128,7 +128,7 @@ export default function SignView({ token }: { token: string }) {
   }
 
   return (
-    <div className="min-h-screen pb-40">
+    <div className="min-h-screen pb-36">
       <header className="sticky top-0 z-30 bg-white border-b border-[var(--line)]">
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center gap-3">
           <div className="min-w-0 flex-1">
@@ -154,10 +154,10 @@ export default function SignView({ token }: { token: string }) {
       </main>
 
       <footer className="fixed bottom-0 inset-x-0 z-30 bg-white border-t border-[var(--line)] shadow-[0_-2px_10px_rgba(0,0,0,0.06)]">
-        <div className="max-w-4xl mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center gap-3">
-          <label className="flex items-start gap-2 text-[13px] sm:text-sm flex-1">
-            <input type="checkbox" className="mt-1 w-4 h-4" checked={consent} onChange={e => setConsent(e.target.checked)} />
-            <span>I agree to sign this document electronically, and that my electronic signature is as valid as a handwritten one.</span>
+        <div className="max-w-4xl mx-auto px-4 py-2.5 sm:py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+          <label className="flex items-start gap-2 text-xs sm:text-sm leading-snug flex-1 text-gray-700">
+            <input type="checkbox" className="mt-0.5 w-4 h-4 shrink-0" checked={consent} onChange={e => setConsent(e.target.checked)} />
+            <span>I agree to sign electronically, and that my electronic signature is as valid as a handwritten one.</span>
           </label>
           <div className="flex flex-col items-stretch sm:items-end gap-1">
             <button className="btn btn-primary min-w-40" disabled={!allDone || !consent || submitting} onClick={finish}>

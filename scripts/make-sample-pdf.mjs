@@ -62,7 +62,8 @@ terms.forEach((t, i) => {
   y -= 6;
 });
 y -= 10;
-p.drawText('I have read and agree to the terms above.', { x: M, y, size: 11, font, color: ink });
+p.drawRectangle({ x: M, y: y - 2, width: 11, height: 11, borderColor: ink, borderWidth: 0.8 });
+p.drawText('I have read and agree to the terms above.', { x: M + 18, y, size: 11, font, color: ink });
 y -= 70;
 for (const [x, who] of [[M, 'Client signature'], [M + 260, 'Provider signature']]) {
   p.drawLine({ start: { x, y }, end: { x: x + 210, y }, thickness: 0.8, color: ink });

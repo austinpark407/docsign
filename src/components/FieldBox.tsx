@@ -28,7 +28,8 @@ export default function FieldBox({
   const r = fieldToScreen(field, page, scale);
   const filled = !!value;
   const auto = !!autoText;
-  const fontPx = Math.max(8, Math.min(r.height * 0.6, field.fontSize * scale));
+  // Text must fit the box even when a small field is shown at phone scale.
+  const fontPx = Math.max(6, Math.min(r.height * 0.75, field.fontSize * scale));
 
   let bg = 'rgb(254 249 195 / 0.85)', border = '#ca8a04';           // needs input
   if (!interactive) { bg = 'rgb(243 244 246 / 0.75)'; border = '#9ca3af'; }
@@ -52,7 +53,7 @@ export default function FieldBox({
     );
   } else {
     content = (
-      <span className="px-1 truncate" style={{ fontSize: Math.min(fontPx, 12), color: interactive ? '#854d0e' : '#6b7280' }}>
+      <span className="px-1 truncate" style={{ fontSize: Math.min(fontPx, 12), color: auto ? '#1d4ed8' : interactive ? '#854d0e' : '#6b7280' }}>
         {auto ? autoText : interactive ? `${field.label}${field.required ? ' *' : ''}` : lockedLabel ?? field.label}
       </span>
     );
@@ -67,16 +68,19 @@ export default function FieldBox({
       aria-label={clickable ? field.label : undefined}
       onClick={clickable ? onClick : undefined}
       onKeyDown={clickable ? e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick!(); } } : undefined}
-      className="absolute flex items-center justify-center overflow-hidden"
+      className="absolute flex items-center justify-center"
       style={{
         left: r.left, top: r.top, width: Math.max(r.width, 6), height: Math.max(r.height, 6),
-        background: bg, border: `1px solid ${border}`, borderRadius: 3,
+        background: bg, border: `1px solid ${active ? 'var(--brand)' : border}`, borderRadius: 3,
+        // Ring drawn outside the box so it doesn't eat into small fields.
+        boxShadow: active ? '0 0 0 3px rgb(37 99 235 / 0.3)' : undefined, lineHeight: 1, zIndex: active ? 2 : 1,
         cursor: clickable ? 'pointer' : 'default',
-        animation: active ? 'field-pulse 1.2s ease-in-out infinite' : undefined,
-        outline: active ? '2px solid var(--brand)' : undefined,
+        animation: active && !filled ? 'field-pulse 1.2s ease-in-out infinite' : undefined,
       }}
     >
       {content}
+      {/* Larger invisible tap target for small fields on touch screens. */}
+      {clickable && <span aria-hidden className="absolute" style={{ inset: Math.min(0, (r.height - 32) / 2) + 'px ' + Math.min(0, (r.width - 32) / 2) + 'px' }} />}
     </div>
   );
 }

@@ -4,9 +4,7 @@
 
 You run it on your own server and your own database, so your documents stay with you. No per-envelope fees and no monthly seats.
 
-<p align="center">
-  <img src="docs/template-editor.png" alt="Template editor: placing signature, name and date fields on a PDF" width="820">
-</p>
+![Template editor: placing signature, name and date fields on a PDF](docs/template-editor.png)
 
 ## Features
 
@@ -20,11 +18,28 @@ You run it on your own server and your own database, so your documents stay with
 - **Reminders, expiring links, voiding**, and a full activity log per document.
 - **Bring your own database.** Any PostgreSQL works: [Neon](https://neon.tech), [Supabase](https://supabase.com), Railway, RDS, or the one in the included Docker setup. Tables are created automatically.
 
-<p align="center">
-  <img src="docs/signing-mobile.png" alt="Signing on a phone" width="260">
-  &nbsp;&nbsp;
-  <img src="docs/signing-certificate.png" alt="Signing certificate page" width="420">
-</p>
+## Screenshots
+
+<table>
+  <tr>
+    <td width="34%" valign="top"><img src="docs/signing-mobile.png" alt="Signing on a phone"></td>
+    <td width="66%" valign="top">
+      <img src="docs/signed-result.png" alt="Signature block of the completed PDF">
+      <br><br>
+      <img src="docs/signing-certificate.png" alt="Signing certificate page appended to the PDF">
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><sub><b>Signing on a phone.</b> No account, a guided "Next field" button, draw or type a signature.</sub></td>
+    <td valign="top"><sub><b>The finished PDF.</b> Every value is drawn exactly on its line, then a signing certificate with the full audit trail is appended.</sub></td>
+  </tr>
+</table>
+
+![Preparing a document: filling in your fields before sending](docs/prepare-document.png)
+<sub><b>Preparing a document.</b> Fill in your fields right on the page, add the signer, and send.</sub>
+
+![Documents dashboard](docs/dashboard.png)
+<sub><b>Dashboard.</b> Track what's waiting for a signature, signed, or still a draft.</sub>
 
 ## Quick start
 

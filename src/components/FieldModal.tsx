@@ -44,6 +44,32 @@ async function typedToPng(text: string, initials: boolean): Promise<string> {
   return canvas.toDataURL('image/png');
 }
 
+/** Crops a drawing to the bounding box of its ink (plus a small margin) so it fills the field. */
+function trimToInk(src: HTMLCanvasElement): string {
+  const { width, height } = src;
+  const data = src.getContext('2d')!.getImageData(0, 0, width, height).data;
+  let minX = width, minY = height, maxX = -1, maxY = -1;
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      if (data[(y * width + x) * 4 + 3] > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+  if (maxX < 0) return src.toDataURL('image/png');
+  const pad = 8;
+  const x = Math.max(0, minX - pad), y = Math.max(0, minY - pad);
+  const w = Math.min(width, maxX + pad) - x, h = Math.min(height, maxY + pad) - y;
+  const out = document.createElement('canvas');
+  out.width = w;
+  out.height = h;
+  out.getContext('2d')!.drawImage(src, x, y, w, h, 0, 0, w, h);
+  return out.toDataURL('image/png');
+}
+
 function DrawPad({ onDone }: { onDone: (v: string) => void }) {
   const ref = useRef<HTMLCanvasElement>(null);
   const drawing = useRef(false);
@@ -101,7 +127,7 @@ function DrawPad({ onDone }: { onDone: (v: string) => void }) {
       />
       <div className="flex items-center mt-3">
         <button type="button" className="btn btn-sm" onClick={clear}>Clear</button>
-        <button type="button" className="btn btn-primary ml-auto" disabled={empty} onClick={() => onDone(ref.current!.toDataURL('image/png'))}>
+        <button type="button" className="btn btn-primary ml-auto" disabled={empty} onClick={() => onDone(trimToInk(ref.current!))}>
           Apply
         </button>
       </div>
