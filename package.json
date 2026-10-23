@@ -1,0 +1,42 @@
+{
+  "name": "docsign",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Self-hosted, open-source e-signature app. Upload a PDF template, place fields, send for signature.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "jest",
+    "postinstall": "node scripts/copy-pdf-worker.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "next": "^16.4.2",
+    "nodemailer": "^10.2.1",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.3.289",
+    "postgres": "^3.4.9",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "resend": "^6.34.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.19.43",
+    "@types/nodemailer": "^8.0.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.2",
+    "jest": "^30.5.2",
+    "tailwindcss": "^4.3.3",
+    "ts-jest": "^29.4.15",
+    "typescript": "^5.9.3"
+  }
+}
